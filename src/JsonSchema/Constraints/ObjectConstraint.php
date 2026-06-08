@@ -131,7 +131,7 @@ class ObjectConstraint extends Constraint
         $undefinedConstraint = $this->factory->createInstanceFor('undefined');
 
         foreach ($properties as $i => $value) {
-            $property = &$this->getProperty($element, $i, $undefinedConstraint);
+            $property = $this->getProperty($element, $i, $undefinedConstraint);
             $definition = $this->getProperty($properties, $i);
 
             if (is_object($definition)) {
@@ -150,7 +150,7 @@ class ObjectConstraint extends Constraint
      *
      * @return mixed
      */
-    protected function &getProperty(&$element, $property, $fallback = null)
+    protected function getProperty($element, $property, $fallback = null)
     {
         if (is_array($element) && (isset($element[$property]) || array_key_exists($property, $element)) /*$this->checkMode == self::CHECK_MODE_TYPE_CAST*/) {
             return $element[$property];
